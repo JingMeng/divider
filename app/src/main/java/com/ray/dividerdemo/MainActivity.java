@@ -1,12 +1,12 @@
-package com.ray.dividerdemo;
+﻿package com.ray.dividerdemo;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -35,21 +35,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         inputNumEditText = findViewById(R.id.et_input_num);
         recyclerView = findViewById(R.id.recyclerView);
-        // 初始化监听
-        initListener();
-        // 设置adapter
+        // 鍒濆鍖栫洃鍚?        initListener();
+        // 璁剧疆adapter
         adapter = new TestAdapter(R.layout.item_test, null);
         recyclerView.setAdapter(adapter);
         divider = Divider.builder().color(Color.BLUE).width(10).height(20).build();
         recyclerView.addItemDecoration(divider);
-        // 设置manager
+        // 璁剧疆manager
         switchLayoutManager(1);
-        // 设置数据
+        // 璁剧疆鏁版嵁
         replaceData(10);
     }
 
     private void initListener() {
-        // 文字改变监听
+        // 鏂囧瓧鏀瑰彉鐩戝惉
         inputNumEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -69,47 +68,39 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        // 设置内容数量
+        // 璁剧疆鍐呭鏁伴噺
         findViewById(R.id.btn_set_num).setOnClickListener(v -> replaceData(num));
-        // 增加内容数量
+        // 澧炲姞鍐呭鏁伴噺
         findViewById(R.id.btn_add_num).setOnClickListener(v -> addData(num));
-        // 删除内容数量
+        // 鍒犻櫎鍐呭鏁伴噺
         findViewById(R.id.btn_remove_num).setOnClickListener(v -> removeData(num));
-        // 增加头
-        findViewById(R.id.btn_header_add).setOnClickListener(v -> {
+        // 澧炲姞澶?        findViewById(R.id.btn_header_add).setOnClickListener(v -> {
             View headerView = getHeaderViewOrFooterView();
             adapter.addHeaderView(headerView);
             headerViews.add(headerView);
             divider.setHeaderCount(adapter.getHeaderLayoutCount());
-            redrawDivider();// 增删得重新的绘制线
-        });
-        // 移除头
-        findViewById(R.id.btn_header_remove).setOnClickListener(v -> {
+            redrawDivider();// 澧炲垹寰楅噸鏂扮殑缁樺埗绾?        });
+        // 绉婚櫎澶?        findViewById(R.id.btn_header_remove).setOnClickListener(v -> {
             if (headerViews.size() > 0) {
                 adapter.removeHeaderView(headerViews.get(0));
                 headerViews.remove(0);
                 divider.setHeaderCount(adapter.getHeaderLayoutCount());
-                redrawDivider();// 增删得重新的绘制线
-            }
+                redrawDivider();// 澧炲垹寰楅噸鏂扮殑缁樺埗绾?            }
         });
-        // 增加尾
-        findViewById(R.id.btn_footer_add).setOnClickListener(v -> {
+        // 澧炲姞灏?        findViewById(R.id.btn_footer_add).setOnClickListener(v -> {
             View headerView = getHeaderViewOrFooterView();
             adapter.addFooterView(headerView);
             footerViews.add(headerView);
             divider.setFooterCount(adapter.getFooterLayoutCount());
-            redrawDivider();// 增删得重新的绘制线
-        });
-        // 移除尾
-        findViewById(R.id.btn_footer_remove).setOnClickListener(v -> {
+            redrawDivider();// 澧炲垹寰楅噸鏂扮殑缁樺埗绾?        });
+        // 绉婚櫎灏?        findViewById(R.id.btn_footer_remove).setOnClickListener(v -> {
             if (footerViews.size() > 0) {
                 adapter.removeFooterView(footerViews.get(0));
                 footerViews.remove(0);
                 divider.setFooterCount(adapter.getFooterLayoutCount());
-                redrawDivider();// 增删得重新的绘制线
-            }
+                redrawDivider();// 澧炲垹寰楅噸鏂扮殑缁樺埗绾?            }
         });
-        // 切换LayoutManager
+        // 鍒囨崲LayoutManager
         findViewById(R.id.btn_linear_v).setOnClickListener(v -> switchLayoutManager(1));
         findViewById(R.id.btn_linear_h).setOnClickListener(v -> switchLayoutManager(2));
         findViewById(R.id.btn_grid_v).setOnClickListener(v -> switchLayoutManager(3));
@@ -119,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 切换LayoutManager
+     * 鍒囨崲LayoutManager
      */
     private void switchLayoutManager(int layoutManagerState) {
         switch (layoutManagerState) {
@@ -135,14 +126,12 @@ public class MainActivity extends AppCompatActivity {
                 // GridLayoutManager VERTICAL
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 4, LinearLayoutManager.VERTICAL, false);
                 this.linearLayoutManager = gridLayoutManager;
-                setSpanSizeLookup(gridLayoutManager);// 设置头、尾，占用3列
-                break;
+                setSpanSizeLookup(gridLayoutManager);// 璁剧疆澶淬€佸熬锛屽崰鐢?鍒?                break;
             case 4:
                 // GridLayoutManager HORIZONTAL
                 GridLayoutManager gridLayoutManagerHorizontal = new GridLayoutManager(getApplicationContext(), 4, LinearLayoutManager.HORIZONTAL, false);
                 this.linearLayoutManager = gridLayoutManagerHorizontal;
-                setSpanSizeLookup(gridLayoutManagerHorizontal);// 设置头、尾，占用3列
-                break;
+                setSpanSizeLookup(gridLayoutManagerHorizontal);// 璁剧疆澶淬€佸熬锛屽崰鐢?鍒?                break;
             case 5:
                 // StaggeredGridLayoutManager VERTICAL
                 this.linearLayoutManager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL);
@@ -158,15 +147,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * GridLayoutManager 设置头、尾，占用3列
-     */
+     * GridLayoutManager 璁剧疆澶淬€佸熬锛屽崰鐢?鍒?     */
     private void setSpanSizeLookup(GridLayoutManager gridLayoutManager) {
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
                 if (position < adapter.getHeaderLayoutCount() || position >= adapter.getItemCount() - adapter.getFooterLayoutCount())
-                    // 头或者尾部，占用3列
-                    return gridLayoutManager.getSpanCount();
+                    // 澶存垨鑰呭熬閮紝鍗犵敤3鍒?                    return gridLayoutManager.getSpanCount();
                 else
                     return 1;
             }
@@ -174,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 获取增加的头、尾
+     * 鑾峰彇澧炲姞鐨勫ご銆佸熬
      */
     private View getHeaderViewOrFooterView() {
         View headerView = View.inflate(getApplicationContext(), R.layout.item_header_footer, null);
@@ -184,41 +171,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 置换数据
+     * 缃崲鏁版嵁
      */
     private void replaceData(int itemCount) {
         ArrayList<String> items = new ArrayList<>();
         for (int i = 0; i < itemCount; i++) {
-            items.add("原始数据" + i);
+            items.add("鍘熷鏁版嵁" + i);
         }
         adapter.replaceData(items);
     }
 
     /**
-     * 增数据
-     */
+     * 澧炴暟鎹?     */
     private void addData(int position) {
         if (position <= adapter.getData().size()) {
-            adapter.addData(position, "新增数据");
-            redrawDivider();// 增删得重新的绘制线
-        }
+            adapter.addData(position, "鏂板鏁版嵁");
+            redrawDivider();// 澧炲垹寰楅噸鏂扮殑缁樺埗绾?        }
     }
 
     /**
-     * 删数据
-     */
+     * 鍒犳暟鎹?     */
     private void removeData(int position) {
         if (position < adapter.getData().size()) {
             adapter.remove(position);
-            redrawDivider();// 增删得重新的绘制线
-        }
+            redrawDivider();// 澧炲垹寰楅噸鏂扮殑缁樺埗绾?        }
     }
 
     /**
-     * 重新绘制线
-     */
+     * 閲嶆柊缁樺埗绾?     */
     private void redrawDivider() {
-        // 如果增删调用的是  adapter.notifyDataSetChanged() 则不用调用下面方法
-        recyclerView.invalidateItemDecorations();
+        // 濡傛灉澧炲垹璋冪敤鐨勬槸  adapter.notifyDataSetChanged() 鍒欎笉鐢ㄨ皟鐢ㄤ笅闈㈡柟娉?        recyclerView.invalidateItemDecorations();
     }
 }
+

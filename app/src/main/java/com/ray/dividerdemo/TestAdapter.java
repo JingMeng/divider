@@ -1,7 +1,7 @@
-package com.ray.dividerdemo;
+﻿package com.ray.dividerdemo;
 
 import android.graphics.Color;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.List;
 
 /**
- * 描述:
+ * 鎻忚堪:
  *
  * @author zhangrq
  * 2018/3/22 16:18
@@ -27,7 +27,7 @@ public class TestAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
     protected void convert(BaseViewHolder holder, String item) {
         int position = holder.getAdapterPosition();
         holder.itemView.setBackgroundColor(Color.RED);
-        // 设置Item宽高
+        // 璁剧疆Item瀹介珮
         switch (layoutManagerState) {
             case 1:
                 // LinearLayoutManager VERTICAL
@@ -54,7 +54,7 @@ public class TestAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
                 holder.itemView.setLayoutParams(new ViewGroup.LayoutParams(position % 2 == 0 ? 200 : 700, ViewGroup.LayoutParams.MATCH_PARENT));
                 break;
         }
-        // 设置数据
+        // 璁剧疆鏁版嵁
         holder.setText(R.id.textView, item);
     }
 
@@ -62,3 +62,4 @@ public class TestAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
         this.layoutManagerState = layoutManagerState;
     }
 }
+

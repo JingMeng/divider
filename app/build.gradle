@@ -1,18 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'com.ray.dividerdemo'
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
-    compileSdkVersion 27
+    compileSdk 34
     defaultConfig {
         applicationId "com.ray.dividerdemo"
-        minSdkVersion 15
-        targetSdkVersion 27
+        minSdk 15
+        targetSdk 34
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -24,17 +25,16 @@ android {
 
 dependencies {
 //    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     // adapter
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.36'
 
-    // 依赖库
     implementation project(':library')
 //    implementation 'com.zrq:divider:1.0.1'
 
